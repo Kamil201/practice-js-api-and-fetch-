@@ -34,7 +34,7 @@ function init() {
 }
 
 async function getWeather(latitude, longitude) {
-	const apiKey = c20f6792d19f4868b494c7d8e4769086; // Replace with your actual API key from weatherbit.io
+	const apiKey = c20f6792d19f4868b494c7d8e4769086; 
 	const apiUrl = `https://api.weatherbit.io/v2.0/current?key=${apiKey}&lat=${latitude}&lon=${longitude}`;
 
 	try {
@@ -45,10 +45,8 @@ async function getWeather(latitude, longitude) {
 		}
 
 		const data = await response.json();
-		return {
-			weather: data.data[0].weather,
-			temp: data.data[0].temp,
-		};
+		const {weather, temp} = data.data[0];
+		return {weather, temp};
 	} catch (error) {
 		throw new Error("Error parsing response:", error);
 	}
